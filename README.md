@@ -13,6 +13,8 @@ We'll be working on UBELIX, the University of Bern's high-performance cluster (H
 
 Ensure you have your campus account (e.g., ab24c123), university email address, and password ready.
 
+In order to connect to UBELIX, you either have to be connected to the Eduroam WiFi or connected via the [UniBE VPN](https://vpn.unibe.ch). Make sure to download, install and configure the VPN!
+
 <img src="ubelix.png" width="200">|
 
 
