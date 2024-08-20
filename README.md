@@ -13,12 +13,12 @@ We'll be working on UBELIX, the University of Bern's high-performance cluster (H
 
 Ensure you have your campus account (e.g., ab24c123), university email address, and password ready.
 
-<img src="nlp_cas/ubelix.png" width="200">|
+<img src="ubelix.png" width="200">|
 
 
 ## UBELIX Overview
 
-<img src="nlp_cas/ubelix_servers.png" width="600">|
+<img src="ubelix_server.png" width="600">|
 
 UBELIX is a powerful resource featuring:
 
@@ -26,7 +26,7 @@ UBELIX is a powerful resource featuring:
 - ~12k CPU cores
 - 160 GPUs with nearly a million GPU cores.
 
-<img src="nlp_cas/ubelix_diagram.png" width="600">|
+<img src="ubelix_diagram.png" width="900">|
 
 It is available to University personnel and students for scientific work and course-related projects. UBELIX allows for extensive software use, with users also able to install their own software within their home directories.
 
