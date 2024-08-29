@@ -62,13 +62,21 @@ Starting JupyterLab on UBELIX usually requires just three commands:
 
 1. **Login to UBELIX:**
     `ssh -L 15051:localhost:15051 <user>@submit03.unibe.ch  # Replace <user> with your campus username`
+   _Note: Change the port number to a random value between 2000 and 65000._
+   
+2. **Setup SSH key access**
+   ```
+   ssh-keygen -t rsa -b 4096
+   # without passphrase
+   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+   chmod 640 .ssh/authorized_keys
+   ```
     
-    _Note: Change the port number to a random value between 2000 and 65000._
 
-2. **Load Anaconda:**
+3. **Load Anaconda:**
     `module load Anaconda3`
 
-3. **Launch JupyterLab:**
+4. **Launch JupyterLab:**
     `jupyter-compute 15051 --time=00:45:00  # Replace 15051 with your chosen port number`
 
 You can add more parameters to request additional resources for the Jupyter environment. Once launched, Jupyter can be accessed from your browser.
@@ -81,3 +89,51 @@ There is a new interface in closed beta testing: [UBELIX OnDemand](https://ondem
 
 
 Keep your home directory clean by regularly deleting old data or moving data to private storage.
+
+
+### Pastebin: Code from Thursday
+
+#### connecting to Ubelix
+
+```
+# connect to Eduroam or VPN
+# choose a submit node (01-04)
+ssh <user>@submit03.unibe.ch #replace <user> with your campus account
+```
+
+#### first script
+```
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=1GB
+
+# Put your code below this line
+module load Workspace_Home
+echo "Hello, UBELIX from node $(hostname)" > hello.txt
+```
+
+#### set up passwordless SSH connection
+```
+ssh-keygen -t rsa -b 4096
+# follow on-screen instructions and choose defaults: id_rsa / no passphrase
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 640 .ssh/authorized_keys
+```
+
+#### setting up port forwarding
+```
+# disconnect from UBELIX first
+ssh -L 34819:localhost:34819 <user>@submit03.unibe.ch
+```
+
+#### load Anaconda
+```
+module load Anaconda3
+```
+
+#### start JupyterLab
+```
+jupyter-compute 34819 --ntasks 1 --time=01:00:00 --partition=gpu --gres=gpu:gtx1080ti:1
+```
+Here we're choosing a GTX 1080ti for 1 hour. For all options see: https://hpc-unibe-ch.github.io/slurm/gpus.html
